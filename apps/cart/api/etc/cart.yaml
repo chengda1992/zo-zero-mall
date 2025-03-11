@@ -1,0 +1,7 @@
+Name: cart
+Host: 0.0.0.0
+Port: 8091
+
+
+CartRpc:
+    Target: consul://127.0.0.1:8500/cart.rpc?wait=15s

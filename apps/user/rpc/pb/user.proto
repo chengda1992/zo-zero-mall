@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./pb";
+
+message RegisterReq {
+	string username = 1;  // 用户名
+	string password = 2;  // 密码
+	string phone = 3;     // 手机号
+	string question = 4;  // 找回密码问题
+	string answer = 5;    // 找回密码答案
+}
+
+message RegisterResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+message LoginReq {
+	string username = 1;  // 用户名
+	string password = 2;  // 密码
+}
+
+message LoginResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+	UserInfo data = 3;  // 用户信息
+}
+
+message InfoReq {
+	int64 id = 1; // 用户 ID
+}
+
+message InfoResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+	UserInfo data = 3;  // 用户信息
+}
+
+message UserInfo {
+	int64 id = 1;           // 用户 ID
+	string username = 2;    // 用户名
+	string phone = 3;       // 手机号
+	string create_time = 4; // 创建时间
+}
+
+service User {
+	rpc Register (RegisterReq) returns (RegisterResp); // 用户注册
+	rpc Login (LoginReq) returns (LoginResp);           // 用户登录
+	rpc Info (InfoReq) returns (InfoResp);              // 获取用户信息
+}

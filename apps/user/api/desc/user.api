@@ -1,0 +1,62 @@
+syntax = "v1"
+
+info (
+	title:   "User API"
+	desc:    "API for managing users"
+	author:  "Your Name"
+	version: "1.0"
+)
+
+type (
+	RegisterReq {
+		Username string `json:"username" optional: required` // 用户名
+		Password string `json:"password"` // 密码
+		Phone    string `json:"phone"` // 手机号
+		Question string `json:"question"` // 找回密码问题
+		Answer   string `json:"answer"` // 找回密码答案
+	}
+	LoginReq {
+		Username string `json:"username"` // 用户名
+		Password string `json:"password"` // 密码
+	}
+	InfoReq {
+		ID int64 `json:"id"` // 用户 ID
+	}
+	UserInfo {
+		ID         int64  `json:"id"` // 用户 ID
+		Username   string `json:"username"` // 用户名
+		Phone      string `json:"phone"` // 手机号
+		CreateTime string `json:"create_time"` // 创建时间
+	}
+	Response {
+		Code    int64       `json:"code"` // 状态码
+		Message string      `json:"message"` // 返回信息
+		Data    interface{} `json:"data"` // 返回数据
+	}
+)
+
+@server (
+	group: user
+)
+//--------------不需要登录--------------------
+service user-api {
+	@doc "用户注册"
+	@handler Register
+	post /user/register (RegisterReq) returns (Response)
+
+	@doc "用户登录"
+	@handler Login
+	post /user/login (LoginReq) returns (Response)
+}
+
+//-----------需要登录------------------
+@server (
+	jwt:   Auth
+	group: user
+)
+service user-api {
+	@doc "获取用户信息"
+	@handler Info
+	get /user/info (InfoReq) returns (Response)
+}
+

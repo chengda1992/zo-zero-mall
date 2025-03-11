@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./";
+
+message AddReq {
+	int64 userid = 1;   // 用户 ID
+	int64 proid = 2;    // 商品 ID
+	int64 quantity = 3; // 商品数量
+	int64 checked = 4;  // 是否勾选
+}
+
+message AddResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+message RemoveReq {
+	int64 id = 1; // 购物车记录 ID
+}
+
+message RemoveResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+message ListReq {
+	int64 userid = 1; // 用户 ID
+}
+
+message ListResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+	repeated CartItem data = 3; // 购物车列表
+}
+
+message UpdateReq {
+	int64 id = 1;       // 购物车记录 ID
+	int64 quantity = 2; // 新的商品数量
+}
+
+message UpdateResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+message CartItem {
+	int64 id = 1;           // 购物车记录 ID
+	int64 userid = 2;       // 用户 ID
+	int64 proid = 3;        // 商品 ID
+	int64 quantity = 4;     // 商品数量
+	int64 checked = 5;      // 是否勾选
+	string create_time = 6; // 创建时间
+	string update_time = 7; // 更新时间
+}
+
+service Cart {
+	rpc Add (AddReq) returns (AddResp);      // 添加商品到购物车
+	rpc Remove (RemoveReq) returns (RemoveResp); // 从购物车移除商品
+	rpc List (ListReq) returns (ListResp);   // 获取购物车列表
+	rpc Update (UpdateReq) returns (UpdateResp); // 更新购物车商品数量
+}

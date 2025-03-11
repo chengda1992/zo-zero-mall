@@ -1,0 +1,37 @@
+type (
+	AddReq {
+		UserID int64 `json:"userid"`     // 用户 ID
+		ProID int64 `json:"proid"`       // 商品 ID
+		Quantity int64 `json:"quantity"` // 商品数量
+		Checked int64 `json:"checked"`   // 是否勾选
+	}
+
+	RemoveReq {
+		ID int64 `json:"id"` // 购物车记录 ID
+	}
+
+	ListReq {
+		UserID int64 `json:"userid"` // 用户 ID
+	}
+
+	UpdateReq {
+		ID int64 `json:"id"`             // 购物车记录 ID
+		Quantity int64 `json:"quantity"` // 新的商品数量
+	}
+
+	CartItem {
+		ID int64 `json:"id"`                   // 购物车记录 ID
+		UserID int64 `json:"userid"`           // 用户 ID
+		ProID int64 `json:"proid"`             // 商品 ID
+		Quantity int64 `json:"quantity"`       // 商品数量
+		Checked int64 `json:"checked"`         // 是否勾选
+		CreateTime string `json:"create_time"` // 创建时间
+		UpdateTime string `json:"update_time"` // 更新时间
+	}
+
+	Response {
+		Code int64 `json:"code"`          // 状态码
+		Message string `json:"message"`   // 返回信息
+		Data interface{} `json:"data"`    // 返回数据
+	}
+)

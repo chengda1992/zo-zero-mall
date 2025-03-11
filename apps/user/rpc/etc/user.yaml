@@ -9,3 +9,8 @@ Consul:
     Host: 127.0.0.1:8500
     Key: user_rpc
 DB: root:123456@tcp(127.0.0.1:3306)/mall-user?charset=utf8mb4&parseTime=True&loc=Local
+
+
+JwtAuth:
+    AccessSecret: 夏天夏天夏天悄悄过去fim_middle夏天夏天夏天悄悄过去
+    AccessExpire: 86400

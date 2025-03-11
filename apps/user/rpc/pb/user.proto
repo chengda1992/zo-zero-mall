@@ -25,7 +25,8 @@ message LoginReq {
 message LoginResp {
 	int64 code = 1;    // 状态码
 	string message = 2; // 返回信息
-	UserInfo data = 3;  // 用户信息
+	string token = 3;  // 登录成功后返回的 token
+	UserInfo data = 4;  // 用户信息
 }
 
 message InfoReq {

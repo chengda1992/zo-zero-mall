@@ -11,4 +11,9 @@ type Config struct {
 	Consul consul.Conf
 
 	DB string
+
+	JwtAuth struct {
+		AccessSecret string
+		AccessExpire int64
+	}
 }

@@ -2,14 +2,12 @@ package logic
 
 import (
 	"context"
+	"go_mall/apps/user/rpc/internal/svc"
 	"go_mall/apps/user/rpc/model"
+	"go_mall/apps/user/rpc/pb/pb"
 	"go_mall/pkg/md5"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"net/http"
-
-	"go_mall/apps/user/rpc/internal/svc"
-	"go_mall/apps/user/rpc/pb/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -31,7 +29,7 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 func (l *RegisterLogic) Register(in *pb.RegisterReq) (*pb.RegisterResp, error) {
 	//1.查询当前手机号是否已经存在
 	phone := in.GetPhone()
-	user, err := l.svcCtx.UserModel.FindOneByPhoneM(l.ctx, phone)
+	user, err := l.svcCtx.UserModel.FindOneByPhone(l.ctx, phone)
 	if err != nil && err != model.ErrNotFound {
 		logx.Errorf("l.svcCtx.UserModel.FindOneByPhone err: %#V", err)
 		return nil, status.Error(codes.Internal, "系统错误")
@@ -58,7 +56,7 @@ func (l *RegisterLogic) Register(in *pb.RegisterReq) (*pb.RegisterResp, error) {
 		return nil, status.Error(codes.Internal, "系统错误")
 	}
 	return &pb.RegisterResp{
-		Code:    http.StatusOK,
+		Code:    int64(codes.OK),
 		Message: "注册成功",
 	}, nil
 }

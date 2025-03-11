@@ -14,7 +14,7 @@ type (
 	UserModel interface {
 		userModel
 		withSession(session sqlx.Session) UserModel
-		FindOneByPhoneM(ctx context.Context, phone string) (*User, error)
+		FindOneByUserName(ctx context.Context, username string) (*User, error)
 	}
 
 	customUserModel struct {
@@ -33,10 +33,10 @@ func (m *customUserModel) withSession(session sqlx.Session) UserModel {
 	return NewUserModel(sqlx.NewSqlConnFromSession(session))
 }
 
-func (m *customUserModel) FindOneByPhoneM(ctx context.Context, phone string) (*User, error) {
-	query := "select id, username, phone, password, question, answer, create_time, update_time from user where phone = ?"
+func (m *customUserModel) FindOneByUserName(ctx context.Context, username string) (*User, error) {
+	query := "select id, username, phone, password, question, answer, create_time, update_time from user where username = ?"
 	var resp User
-	err := m.conn.QueryRowCtx(ctx, &resp, query, phone)
+	err := m.conn.QueryRowCtx(ctx, &resp, query, username)
 	switch err {
 	case nil:
 		return &resp, nil

@@ -8,7 +8,7 @@ import (
 	"go_mall/apps/user/rpc/internal/config"
 	"go_mall/apps/user/rpc/internal/server"
 	"go_mall/apps/user/rpc/internal/svc"
-	"go_mall/apps/user/rpc/pb/pb"
+	pb "go_mall/apps/user/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

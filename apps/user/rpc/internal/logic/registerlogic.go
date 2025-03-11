@@ -4,7 +4,7 @@ import (
 	"context"
 	"go_mall/apps/user/rpc/internal/svc"
 	"go_mall/apps/user/rpc/model"
-	"go_mall/apps/user/rpc/pb/pb"
+	pb "go_mall/apps/user/rpc/pb"
 	"go_mall/pkg/md5"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

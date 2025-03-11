@@ -7,20 +7,20 @@ package user
 import (
 	"context"
 
-	"go_mall/apps/user/rpc/pb/pb"
+	"go_mall/apps/user/rpc/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 )
 
 type (
-	InfoReq      = pb.InfoReq
-	InfoResp     = pb.InfoResp
-	LoginReq     = pb.LoginReq
-	LoginResp    = pb.LoginResp
-	RegisterReq  = pb.RegisterReq
-	RegisterResp = pb.RegisterResp
-	UserInfo     = pb.UserInfo
+	InfoReq      = __.InfoReq
+	InfoResp     = __.InfoResp
+	LoginReq     = __.LoginReq
+	LoginResp    = __.LoginResp
+	RegisterReq  = __.RegisterReq
+	RegisterResp = __.RegisterResp
+	UserInfo     = __.UserInfo
 
 	User interface {
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
@@ -40,16 +40,16 @@ func NewUser(cli zrpc.Client) User {
 }
 
 func (m *defaultUser) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
-	client := pb.NewUserClient(m.cli.Conn())
+	client := __.NewUserClient(m.cli.Conn())
 	return client.Register(ctx, in, opts...)
 }
 
 func (m *defaultUser) Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error) {
-	client := pb.NewUserClient(m.cli.Conn())
+	client := __.NewUserClient(m.cli.Conn())
 	return client.Login(ctx, in, opts...)
 }
 
 func (m *defaultUser) Info(ctx context.Context, in *InfoReq, opts ...grpc.CallOption) (*InfoResp, error) {
-	client := pb.NewUserClient(m.cli.Conn())
+	client := __.NewUserClient(m.cli.Conn())
 	return client.Info(ctx, in, opts...)
 }

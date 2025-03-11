@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/codes"
 
 	"go_mall/apps/user/rpc/internal/svc"
-	"go_mall/apps/user/rpc/pb/pb"
+	pb "go_mall/apps/user/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

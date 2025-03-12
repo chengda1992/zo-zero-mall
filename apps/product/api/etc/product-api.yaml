@@ -1,0 +1,18 @@
+Name: product-api
+Host: 0.0.0.0
+Port: 8093
+
+
+Consul:
+    Host: 127.0.0.1:8500
+
+
+ProductRpc:
+    Target: consul://127.0.0.1:8500/product_rpc?wait=15s
+
+Auth:
+    AccessSecret: 夏天夏天夏天悄悄过去fim_middle夏天夏天夏天悄悄过去
+    AccessExpire: 86400
+Log:
+    Level: debug  # 设置为 debug 级别
+    Mode: console  # 输出到控制台

@@ -1,0 +1,39 @@
+info(
+	title: "Category type"
+	desc: "API for product and category management"
+	version: "1.0"
+)
+
+type (
+	// 分类树节点
+	CategoryNode {
+		Id       int64          `json:"id"`
+		Name     string         `json:"name"`
+		Children []CategoryNode `json:"children"`
+	}
+
+
+	//请求分组详情
+	GetCategoryByIdReq {
+		Id int64 `json:"id"`
+	}
+		// 添加分类请求
+	AddCategoryReq {
+		ParentId int64  `json:"parent_id"`
+		Name     string `json:"name"`
+	}
+
+
+		// 更新分类请求
+	UpdateCategoryReq {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+	}
+
+
+		// 删除分类请求
+	DeleteCategoryReq {
+		Id int64 `json:"id"`
+	}
+
+)

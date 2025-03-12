@@ -1,0 +1,38 @@
+info(
+	title: "product type"
+	desc: "API for product management"
+	version: "1.0"
+)
+
+type (
+
+	// 添加商品请求
+	AddProductReq {
+		CateId int32 `json:"cate_id"`
+		Name string `json:"name"`
+		Subtitle string `json:"subtitle"`
+		Price float64 `json:"price"`
+		Stock int32 `json:"stock"`
+		Status int32 `json:"status"`
+	}
+
+		// 添加商品响应
+	AddProductResp {
+		Id int64 `json:"id"`
+	}
+		// 商品详情请求
+	GetProductReq {
+		Id int64 `json:"id"`
+	}
+
+		// 搜索商品请求
+	SearchProductReq {
+		Keyword string `json:"keyword"`
+	}
+
+		// 删除商品请求
+	DeleteProductReq {
+		Id int64 `json:"id"`
+	}
+
+)

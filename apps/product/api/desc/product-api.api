@@ -1,0 +1,73 @@
+info (
+	title:   "Product API"
+	desc:    "API for product and category management"
+	version: "1.0"
+)
+
+type (
+	Response {
+		Code    int64       `json:"code"` // 状态码
+		Message string      `json:"message"` // 返回信息
+		Data    interface{} `json:"data"` // 返回数据
+	}
+)
+
+import "product/category.api"
+
+//import "product/product.api"
+//-------------------------产品----------------------------------------
+//@server(
+// group: product
+//)
+//
+//service product-api {
+// @doc "获取产品线信息"
+// @handler GetProduct
+// get /product (GetProductReq) returns (Response)
+//
+// @doc "搜索产品信息"
+// @handler SearchProduct
+// get /product/search (SearchProductReq) returns (Response)
+//}
+//
+//@server(
+// group: product
+// jwt: Auth
+//)
+//
+//service product-api {
+// @doc "添加产品信息"
+// @handler AddProduct
+// post /product (AddProductReq) returns (Response)
+// @doc "删除产品信息"
+// @handler DeleteProduct
+// delete /product (DeleteProductReq) returns (Response)
+//}
+//----------------------------分类-----------------------------
+@server (
+	group: category
+	jwt:   Auth
+)
+//分类接口
+service product-api {
+	@doc "分类详情"
+	@handler GetCategoryById
+	get /category/GetCategoryById (GetCategoryByIdReq) returns (Response)
+
+	@doc "分类树"
+	@handler GetCategoryTree
+	get /category/tree returns (Response)
+
+	@doc "添加分类"
+	@handler AddCategory
+	post /category (AddCategoryReq) returns (Response)
+
+	@doc "修改分类"
+	@handler UpdateCategory
+	put /category (UpdateCategoryReq) returns (Response)
+
+	@doc "删除分类"
+	@handler DeleteCategory
+	delete /category (DeleteCategoryReq) returns (Response)
+}
+

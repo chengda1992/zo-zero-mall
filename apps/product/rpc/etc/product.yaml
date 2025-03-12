@@ -1,0 +1,13 @@
+Name: product.rpc
+ListenOn: 0.0.0.0:9093
+
+CacheRedis:
+    - Host: 127.0.0.1:6379
+
+
+Consul:
+    Host: 127.0.0.1:8500
+    Key: product_rpc
+
+
+DB: root:123456@tcp(127.0.0.1:3306)/mall-product?charset=utf8mb4&parseTime=True&loc=Local

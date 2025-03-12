@@ -15,6 +15,8 @@ goctl rpc protoc cart.proto --go_out=../pb --go-grpc_out=../pb --zrpc_out=../../
 #生成cart model
 cd ..
 goctl model mysql datasource -url="root:123456@tcp(127.0.0.1:3306)/mall-user" -table="user" -dir="./model" --style=goZero
+# -c 开启缓存
+goctl model mysql datasource -url="root:123456@tcp(127.0.0.1:3306)/mall-user" -table="user" -dir="./model" --style=goZero -c
 
 ```
 ## 2 注册中心改为consul

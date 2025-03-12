@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./";
+
+// 分类树节点
+message CategoryNode {
+	int64 id = 1;
+	string name = 2;
+	repeated CategoryNode children = 3;
+}
+message GetCategoryReq {
+	int64 id = 1;
+}
+message GetCategoryResp {
+	CategoryInfo category = 1;
+	int64 code = 2;    // 状态码
+	string message = 3; // 返回信息
+}
+
+message GetCategoryTreeReq {
+	int64 parent_id = 1;
+}
+
+
+// 获取分类树响应
+message GetCategoryTreeResp {
+	repeated CategoryNode tree = 1;
+	int64 code = 2;    // 状态码
+	string message = 3; // 返回信息
+}
+
+// 添加分类请求
+message AddCategoryReq {
+	int64 parent_id = 1;
+	string name = 2;
+}
+
+// 添加分类响应
+message AddCategoryResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+// 更新分类请求
+message UpdateCategoryReq {
+	int64 id = 1;
+	string name = 2;
+}
+
+// 更新分类响应
+message UpdateCategoryResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+// 删除分类请求
+message DeleteCategoryReq {
+	int64 id = 1;
+}
+
+// 删除分类响应
+message DeleteCategoryResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+message CategoryInfo {
+	int64 id = 1;
+	string parentid = 2;
+	string name = 3;
+	int64 status = 4;
+	string createTime = 5;
+	string updateTime = 6;
+}
+
+
+//
+//
+//// 商品详情请求
+//message GetProductReq {
+//	int64 id = 1;
+//}
+//
+//// 商品详情响应
+//message GetProductResp {
+//	int64 id = 1;
+//	string name = 2;
+//	string subtitle = 3;
+//	double price = 4;
+//	int64 stock = 5;
+//	int64 status = 6;
+//	string created_at = 7;
+//	string updated_at = 8;
+//}
+//
+//// 搜索商品请求
+//message SearchProductReq {
+//	string keyword = 1;
+//}
+//
+//// 搜索商品响应
+//message SearchProductResp {
+//	repeated GetProductResp products = 1;
+//}
+
+
+
+
+// 分类服务
+service product {
+	//分类
+	rpc GetCategoryById(GetCategoryReq) returns (GetCategoryResp); // 获取分类树
+	rpc GetCategoryTree(GetCategoryTreeReq) returns (GetCategoryTreeResp); // 获取分类树
+	rpc AddCategory(AddCategoryReq) returns (AddCategoryResp); // 添加分类
+	rpc UpdateCategory(UpdateCategoryReq) returns (UpdateCategoryResp); // 更新分类
+	rpc DeleteCategory(DeleteCategoryReq) returns (DeleteCategoryResp); // 删除分类
+//
+//	// 商品
+//	rpc GetProduct(GetProductReq) returns (GetProductResp); // 获取商品详情
+//	rpc SearchProduct(SearchProductReq) returns (SearchProductResp); // 搜索商品
+}

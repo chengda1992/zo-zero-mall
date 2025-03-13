@@ -53,6 +53,8 @@ type Response struct {
 
 type SearchProductReq struct {
 	Keyword string `json:"keyword"`
+	Page    int64  `json:"page"`
+	Size    int64  `json:"size"`
 }
 
 type UpdateCategoryReq struct {

@@ -2,6 +2,9 @@ package product
 
 import (
 	"context"
+	pb "go_mall/apps/product/rpc/pb"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 
 	"go_mall/apps/product/api/internal/svc"
 	"go_mall/apps/product/api/internal/types"
@@ -25,7 +28,27 @@ func NewSearchProductLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Sea
 }
 
 func (l *SearchProductLogic) SearchProduct(req *types.SearchProductReq) (resp *types.Response, err error) {
-	// todo: add your logic here and delete this line
+	product, err := l.svcCtx.ProductRpc.SearchProduct(l.ctx, &pb.SearchProductReq{
+		Keyword: req.Keyword,
+		Page:    req.Page,
+		Size:    req.Size,
+	})
+	if err != nil {
+		if status, ok := status.FromError(err); ok {
+			return &types.Response{
+				Code:    int64(status.Code()),
+				Message: status.Message(),
+			}, nil
+		}
+		return &types.Response{
+			Code:    int64(codes.Internal),
+			Message: "系统错误，请联系管理员",
+		}, nil
+	}
 
-	return
+	return &types.Response{
+		Code:    int64(codes.OK),
+		Message: "查询成功",
+		Data:    product,
+	}, nil
 }

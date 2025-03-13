@@ -28,6 +28,7 @@ type (
 	GetCategoryTreeResp = __.GetCategoryTreeResp
 	GetProductReq       = __.GetProductReq
 	GetProductResp      = __.GetProductResp
+	ProductInfo         = __.ProductInfo
 	SearchProductReq    = __.SearchProductReq
 	SearchProductResp   = __.SearchProductResp
 	UpdateCategoryReq   = __.UpdateCategoryReq

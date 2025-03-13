@@ -30,6 +30,8 @@ type (
 		// 搜索商品请求
 	SearchProductReq {
 		Keyword string `json:"keyword"`
+		Page int64 `json:"page"`
+		size int64 `json:"size"`
 	}
 
 		// 删除商品请求

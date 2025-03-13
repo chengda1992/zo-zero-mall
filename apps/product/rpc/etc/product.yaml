@@ -16,3 +16,7 @@ DB: root:123456@tcp(127.0.0.1:3306)/mall-product?charset=utf8mb4&parseTime=True&
 Log:
     Level: debug  # 设置为 debug 级别
     Mode: console  # 输出到控制台
+
+
+Elasticsearch:
+    Address: "http://localhost:9200" # ES 地址

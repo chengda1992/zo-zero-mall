@@ -14,4 +14,8 @@ type Config struct {
 	CacheRedis cache.CacheConf
 
 	DB string
+
+	Elasticsearch struct {
+		Address string `json:"Address"`
+	}
 }

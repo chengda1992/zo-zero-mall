@@ -16,6 +16,8 @@ import (
 type (
 	AddCategoryReq      = __.AddCategoryReq
 	AddCategoryResp     = __.AddCategoryResp
+	AddProductReq       = __.AddProductReq
+	AddProductResp      = __.AddProductResp
 	CategoryInfo        = __.CategoryInfo
 	CategoryNode        = __.CategoryNode
 	DeleteCategoryReq   = __.DeleteCategoryReq
@@ -24,8 +26,14 @@ type (
 	GetCategoryResp     = __.GetCategoryResp
 	GetCategoryTreeReq  = __.GetCategoryTreeReq
 	GetCategoryTreeResp = __.GetCategoryTreeResp
+	GetProductReq       = __.GetProductReq
+	GetProductResp      = __.GetProductResp
+	SearchProductReq    = __.SearchProductReq
+	SearchProductResp   = __.SearchProductResp
 	UpdateCategoryReq   = __.UpdateCategoryReq
 	UpdateCategoryResp  = __.UpdateCategoryResp
+	UpdateProductReq    = __.UpdateProductReq
+	UpdateProductResp   = __.UpdateProductResp
 
 	Product interface {
 		// 分类
@@ -34,6 +42,10 @@ type (
 		AddCategory(ctx context.Context, in *AddCategoryReq, opts ...grpc.CallOption) (*AddCategoryResp, error)
 		UpdateCategory(ctx context.Context, in *UpdateCategoryReq, opts ...grpc.CallOption) (*UpdateCategoryResp, error)
 		DeleteCategory(ctx context.Context, in *DeleteCategoryReq, opts ...grpc.CallOption) (*DeleteCategoryResp, error)
+		AddProduct(ctx context.Context, in *AddProductReq, opts ...grpc.CallOption) (*AddProductResp, error)
+		UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error)
+		GetProduct(ctx context.Context, in *GetProductReq, opts ...grpc.CallOption) (*GetProductResp, error)
+		SearchProduct(ctx context.Context, in *SearchProductReq, opts ...grpc.CallOption) (*SearchProductResp, error)
 	}
 
 	defaultProduct struct {
@@ -71,4 +83,24 @@ func (m *defaultProduct) UpdateCategory(ctx context.Context, in *UpdateCategoryR
 func (m *defaultProduct) DeleteCategory(ctx context.Context, in *DeleteCategoryReq, opts ...grpc.CallOption) (*DeleteCategoryResp, error) {
 	client := __.NewProductClient(m.cli.Conn())
 	return client.DeleteCategory(ctx, in, opts...)
+}
+
+func (m *defaultProduct) AddProduct(ctx context.Context, in *AddProductReq, opts ...grpc.CallOption) (*AddProductResp, error) {
+	client := __.NewProductClient(m.cli.Conn())
+	return client.AddProduct(ctx, in, opts...)
+}
+
+func (m *defaultProduct) UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error) {
+	client := __.NewProductClient(m.cli.Conn())
+	return client.UpdateProduct(ctx, in, opts...)
+}
+
+func (m *defaultProduct) GetProduct(ctx context.Context, in *GetProductReq, opts ...grpc.CallOption) (*GetProductResp, error) {
+	client := __.NewProductClient(m.cli.Conn())
+	return client.GetProduct(ctx, in, opts...)
+}
+
+func (m *defaultProduct) SearchProduct(ctx context.Context, in *SearchProductReq, opts ...grpc.CallOption) (*SearchProductResp, error) {
+	client := __.NewProductClient(m.cli.Conn())
+	return client.SearchProduct(ctx, in, opts...)
 }

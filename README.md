@@ -11,10 +11,10 @@ cd apps
 goctl api go -api cart/api/cart.api -dir cart/api
 #生成cart rpc  和cart.proto同级目录
 cd cart/rpc/pb
-goctl rpc protoc cart.proto --go_out=../pb --go-grpc_out=../pb --zrpc_out=../../rpc
+goctl rpc protoc cart.proto --go_out=. --go-grpc_out=. --zrpc_out=../
 #生成cart model
 cd ..
-goctl model mysql datasource -url="root:123456@tcp(127.0.0.1:3306)/mall-user" -table="user" -dir="./model" --style=goZero
+goctl model mysql datasource -url="root:123456@tcp(127.0.0.1:3306)/mall-product" -table="product" -dir="./model" --style=goZero
 # -c 开启缓存
 goctl model mysql datasource -url="root:123456@tcp(127.0.0.1:3306)/mall-user" -table="user" -dir="./model" --style=goZero -c
 

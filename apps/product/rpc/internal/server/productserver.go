@@ -48,3 +48,23 @@ func (s *ProductServer) DeleteCategory(ctx context.Context, in *__.DeleteCategor
 	l := logic.NewDeleteCategoryLogic(ctx, s.svcCtx)
 	return l.DeleteCategory(in)
 }
+
+func (s *ProductServer) AddProduct(ctx context.Context, in *__.AddProductReq) (*__.AddProductResp, error) {
+	l := logic.NewAddProductLogic(ctx, s.svcCtx)
+	return l.AddProduct(in)
+}
+
+func (s *ProductServer) UpdateProduct(ctx context.Context, in *__.UpdateProductReq) (*__.UpdateProductResp, error) {
+	l := logic.NewUpdateProductLogic(ctx, s.svcCtx)
+	return l.UpdateProduct(in)
+}
+
+func (s *ProductServer) GetProduct(ctx context.Context, in *__.GetProductReq) (*__.GetProductResp, error) {
+	l := logic.NewGetProductLogic(ctx, s.svcCtx)
+	return l.GetProduct(in)
+}
+
+func (s *ProductServer) SearchProduct(ctx context.Context, in *__.SearchProductReq) (*__.SearchProductResp, error) {
+	l := logic.NewSearchProductLogic(ctx, s.svcCtx)
+	return l.SearchProduct(in)
+}

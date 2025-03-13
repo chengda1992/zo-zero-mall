@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	category "go_mall/apps/product/api/internal/handler/category"
+	product "go_mall/apps/product/api/internal/handler/product"
 	"go_mall/apps/product/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -44,6 +45,41 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/category/tree",
 				Handler: category.GetCategoryTreeHandler(serverCtx),
+			},
+		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 获取产品线信息
+				Method:  http.MethodGet,
+				Path:    "/product",
+				Handler: product.GetProductHandler(serverCtx),
+			},
+			{
+				// 搜索产品信息
+				Method:  http.MethodGet,
+				Path:    "/product/search",
+				Handler: product.SearchProductHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 添加产品信息
+				Method:  http.MethodPost,
+				Path:    "/product",
+				Handler: product.AddProductHandler(serverCtx),
+			},
+			{
+				// 删除产品信息
+				Method:  http.MethodDelete,
+				Path:    "/product",
+				Handler: product.DeleteProductHandler(serverCtx),
 			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),

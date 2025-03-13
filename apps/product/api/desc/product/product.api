@@ -8,12 +8,14 @@ type (
 
 	// 添加商品请求
 	AddProductReq {
-		CateId int32 `json:"cate_id"`
+		CateId int64 `json:"cate_id"`
 		Name string `json:"name"`
+		Detail string `json:"detail"`
 		Subtitle string `json:"subtitle"`
 		Price float64 `json:"price"`
-		Stock int32 `json:"stock"`
-		Status int32 `json:"status"`
+		Stock int64 `json:"stock"`
+		Status int64 `json:"status"`
+		Images []string `json:"images"`
 	}
 
 		// 添加商品响应

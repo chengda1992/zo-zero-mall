@@ -75,34 +75,6 @@ message CategoryInfo {
 }
 
 
-//
-//
-//// 商品详情请求
-//message GetProductReq {
-//	int64 id = 1;
-//}
-//
-//// 商品详情响应
-//message GetProductResp {
-//	int64 id = 1;
-//	string name = 2;
-//	string subtitle = 3;
-//	double price = 4;
-//	int64 stock = 5;
-//	int64 status = 6;
-//	string created_at = 7;
-//	string updated_at = 8;
-//}
-//
-//// 搜索商品请求
-//message SearchProductReq {
-//	string keyword = 1;
-//}
-//
-//// 搜索商品响应
-//message SearchProductResp {
-//	repeated GetProductResp products = 1;
-//}
 
 
 
@@ -117,6 +89,79 @@ service product {
 	rpc DeleteCategory(DeleteCategoryReq) returns (DeleteCategoryResp); // 删除分类
 //
 //	// 商品
-//	rpc GetProduct(GetProductReq) returns (GetProductResp); // 获取商品详情
-//	rpc SearchProduct(SearchProductReq) returns (SearchProductResp); // 搜索商品
+
+
+	rpc AddProduct(AddProductReq) returns (AddProductResp);
+	rpc UpdateProduct(UpdateProductReq) returns (UpdateProductResp);
+	rpc GetProduct(GetProductReq) returns (GetProductResp); // 获取商品详情
+	rpc SearchProduct(SearchProductReq) returns (SearchProductResp); // 搜索商品
+}
+
+message AddProductReq{
+	int64 CateId =1;
+	string Name =2;
+	string Subtitle =3;
+	double Price =4;
+	int64 Stock =5;
+	int64 Status =6;
+	string detail = 7;
+	repeated string images = 8;
+}
+
+message AddProductResp {
+	int64 code = 1;    // 状态码
+	string message = 2; // 返回信息
+}
+
+message UpdateProductReq{
+	double Price =4;
+	int64 Stock =5;
+}
+
+message UpdateProductResp{
+	int64 CateId =1;
+	string Name =2;
+	string Subtitle =3;
+	double Price =4;
+	int64 Stock =5;
+	int64 Status =6;
+	int64 code = 7;    // 状态码
+	string message = 8; // 返回信息
+	string created_at = 9;
+	string updated_at = 10;
+	string detail = 11;
+	repeated string images = 12;
+}
+
+
+
+// 商品详情请求
+message GetProductReq {
+	int64 id = 1;
+}
+
+// 商品详情响应
+message GetProductResp {
+	int64 id = 1;
+	string name = 2;
+	string subtitle = 3;
+	double price = 4;
+	int64 stock = 5;
+	int64 status = 6;
+	int64 code = 7;    // 状态码
+	string message = 8; // 返回信息
+	string created_at = 9;
+	string updated_at = 10;
+	string detail = 11;
+	repeated string images = 12;
+}
+
+// 搜索商品请求
+message SearchProductReq {
+	string keyword = 1;
+}
+
+// 搜索商品响应
+message SearchProductResp {
+	repeated GetProductResp products = 1;
 }

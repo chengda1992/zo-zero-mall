@@ -1,6 +1,8 @@
 module go_mall
 
-go 1.23.4
+go 1.22.0
+
+toolchain go1.23.4
 
 require (
 	github.com/zeromicro/go-zero v1.8.1

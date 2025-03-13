@@ -1,0 +1,34 @@
+services:
+
+    product-rpc:
+        image: my-go-zero-project01:latest
+        container_name: product-rpc
+        ports:
+            - "8081:8081"
+        command: ["./product-rpc"]
+        restart: always
+
+    product-api:
+        image: my-go-zero-project01:latest
+        container_name: product-api
+        ports:
+            - "8080:8080"
+        command: ["./product-api"]
+        restart: always
+
+    user-rpc:
+        image: my-go-zero-project01:latest
+        container_name: user-rpc
+        ports:
+            - "8083:8083"
+        command: ["./user-rpc"]
+        restart: always
+
+    user-api:
+        image: my-go-zero-project01:latest
+        container_name: user-api
+        ports:
+            - "8082:8082"
+        command: ["./user-api"]
+        restart: always
+

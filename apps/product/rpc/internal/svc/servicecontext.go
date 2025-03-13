@@ -10,6 +10,7 @@ type ServiceContext struct {
 	Config config.Config
 
 	CategoryModel model.CategoryModel
+	ProductModel  model.ProductModel
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -17,5 +18,6 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config:        c,
 		CategoryModel: model.NewCategoryModel(mysql, c.CacheRedis),
+		ProductModel:  model.NewProductModel(mysql),
 	}
 }

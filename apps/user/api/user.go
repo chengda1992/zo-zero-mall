@@ -15,7 +15,7 @@ import (
 	_ "github.com/zeromicro/zero-contrib/zrpc/registry/consul"
 )
 
-var configFile = flag.String("f", "apps/user/api/etc/user-api.yaml", "the config file")
+var configFile = flag.String("f", "user-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

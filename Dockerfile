@@ -2,8 +2,8 @@
 FROM golang:1.22-alpine AS builder
 
 ENV CGO_ENABLED=0
-ENV GOPATH /go
-ENV GOCACHE /go-build
+ENV GOPATH=/go
+ENV GOCACHE=/go-build
 
 # 设置工作目录
 WORKDIR /app
@@ -12,7 +12,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 # 下载依赖
-RUN --mount=type=cache,target=/go/pkg/mod/cache\
+RUN --mount=type=cache,target=/go/pkg/mod/cache \
     GOPROXY=https://goproxy.cn,direct \
     go mod download
 
@@ -43,8 +43,7 @@ COPY --from=builder /app/product-rpc .
 COPY --from=builder /app/user-api .
 COPY --from=builder /app/user-rpc .
 
+
 # 暴露端口
 EXPOSE 8080 8081 8082 8083
 
-# 启动服务（默认启动 order-api）
-CMD ["./order-api"]

@@ -1,34 +1,64 @@
 services:
 
+    consul:
+        image: consul:1.15.4
+        container_name: consul
+        ports:
+            - "8500:8500"  # Consul Web UI 端口
+            - "8600:8600"  # DNS 端口
+        command: agent -dev -client=0.0.0.0
+        networks:
+            - go-mall-network
+
+
     product-rpc:
-        image: my-go-zero-project01:latest
+        image: mall-docker-imager:latest
         container_name: product-rpc
         ports:
             - "8081:8081"
-        command: ["./product-rpc"]
+        command: [ "./product-rpc" ]
         restart: always
+        volumes:
+            - D:/docker/go-mall-master/product/rpc/product-rpc.yaml:/app/product-rpc.yaml
+        networks:
+            - go-mall-network
 
     product-api:
-        image: my-go-zero-project01:latest
+        image: mall-docker-imager:latest
         container_name: product-api
         ports:
             - "8080:8080"
-        command: ["./product-api"]
+        command: [ "./product-api" ]
         restart: always
+        volumes:
+            - D:/docker/go-mall-master/product/api/product-api.yaml:/app/product-api.yaml
+        networks:
+            - go-mall-network
 
     user-rpc:
-        image: my-go-zero-project01:latest
+        image: mall-docker-imager:latest
         container_name: user-rpc
         ports:
             - "8083:8083"
-        command: ["./user-rpc"]
+        command: [ "./user-rpc" ]
         restart: always
-
+        volumes:
+            - D:/docker/go-mall-master/user/rpc/user-rpc.yaml:/app/user-rpc.yaml
+        networks:
+            - go-mall-network
     user-api:
-        image: my-go-zero-project01:latest
+        image: mall-docker-imager:latest
         container_name: user-api
         ports:
             - "8082:8082"
-        command: ["./user-api"]
+        command: [ "./user-api" ]
         restart: always
+        volumes:
+            - D:/docker/go-mall-master/user/api/user-api.yaml:/app/user-api.yaml
+        networks:
+            - go-mall-network
 
+# 定义网络
+networks:
+    go-mall-network:
+        driver: bridge
